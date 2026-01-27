@@ -2,17 +2,14 @@
 get_header();
 ?>
 
-<div class="outfit-container">
+<div class="single-outfit-container">
 
-  <?php while ( have_posts() ) : the_post(); ?>
+  <div class="single-outfit-left">
+    <?php the_post_thumbnail('large'); ?>
+  </div>
 
+  <div class="single-outfit-right">
     <h1><?php the_title(); ?></h1>
-
-    <?php if ( has_post_thumbnail() ) : ?>
-      <div class="outfit-image">
-        <?php the_post_thumbnail('large'); ?>
-      </div>
-    <?php endif; ?>
 
     <div class="outfit-description">
       <?php the_content(); ?>
@@ -23,10 +20,10 @@ get_header();
       <a href="#" class="buy-btn">Buy Jeans</a>
       <a href="#" class="buy-btn">Buy Shoes</a>
     </div>
-
-  <?php endwhile; ?>
+  </div>
 
 </div>
 
 <?php
 get_footer();
+?>
