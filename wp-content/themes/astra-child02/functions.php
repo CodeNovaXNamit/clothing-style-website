@@ -85,25 +85,41 @@ function outfits_grid_shortcode() {
 add_shortcode('outfits', 'outfits_grid_shortcode');
 
 
-// 🔘 Render Outfit Buy Buttons (Dynamic from Secure Custom Fields)
-function render_outfit_buttons() {
-    if (!function_exists('scf_get')) return;
 
-    $buttons = scf_get('outfit_buttons');
+
+// 🔘 Render Outfit Buy Buttons (Dynamic - SCF)
+
+function render_outfit_buttons() {
+
+    if ( ! function_exists('scf_get') ) {
+        return;
+    }
+
+    $buttons = [];
+
+    for ($i = 1; $i <= 6; $i++) {
+        $label = scf_get("button_label_$i");
+        $link  = scf_get("affiliate_link_$i");
+
+        if ($label && $link) {
+            $buttons[] = [
+                'label' => $label,
+                'link'  => $link
+            ];
+        }
+    }
+
     if (empty($buttons)) return;
 
     echo '<div class="outfit-buttons">';
 
-    foreach ($buttons as $button) {
-        $label = esc_html($button['button_label']);
-        $link  = esc_url($button['affiliate_link']);
-
-        if ($label && $link) {
-            echo '<a class="buy-btn" href="' . $link . '" target="_blank" rel="nofollow sponsored">';
-            echo $label;
-            echo '</a>';
-        }
+    foreach ($buttons as $btn) {
+        echo '<a class="buy-btn" href="' . esc_url($btn['link']) . '" target="_blank" rel="nofollow sponsored">';
+        echo esc_html($btn['label']);
+        echo '</a>';
     }
 
     echo '</div>';
 }
+
+

@@ -1,6 +1,4 @@
-<?php
-get_header();
-?>
+<?php get_header(); ?>
 
 <div class="single-outfit-container">
 
@@ -15,19 +13,9 @@ get_header();
       <?php the_content(); ?>
     </div>
 
-    <?php
-    if (function_exists('render_outfit_buttons')) {
-        render_outfit_buttons();
-    }
-    ?>
-
+    <?php render_outfit_buttons(); ?>
   </div>
 
 </div>
 
-<?php
-get_footer();
-?>
-
-
-
+<?php get_footer(); ?>
