@@ -89,37 +89,40 @@ add_shortcode('outfits', 'outfits_grid_shortcode');
 
 // 🔘 Render Outfit Buy Buttons (Dynamic - SCF)
 
-function render_outfit_buttons() {
+// 🔘 Render Outfit Buy Buttons (ACF – fixed field names)
+if ( ! function_exists('render_outfit_buttons') ) {
+    function render_outfit_buttons() {
 
-    if ( ! function_exists('scf_get') ) {
-        return;
-    }
-
-    $buttons = [];
-
-    for ($i = 1; $i <= 6; $i++) {
-        $label = scf_get("button_label_$i");
-        $link  = scf_get("affiliate_link_$i");
-
-        if ($label && $link) {
-            $buttons[] = [
-                'label' => $label,
-                'link'  => $link
-            ];
+        if ( ! function_exists('get_field') ) {
+            return;
         }
+
+        $buttons = [];
+
+        for ($i = 1; $i <= 10; $i++) {
+            $label = get_field("button_label_$i");
+            $link  = get_field("affiliate_link_$i");
+
+            if ($label && $link) {
+                $buttons[] = [
+                    'label' => $label,
+                    'link'  => $link,
+                ];
+            }
+        }
+
+        if ( empty($buttons) ) return;
+
+        echo '<div class="outfit-buttons">';
+
+        foreach ($buttons as $btn) {
+            echo '<a class="buy-btn" href="' . esc_url($btn['link']) . '" target="_blank" rel="nofollow sponsored">';
+            echo esc_html($btn['label']);
+            echo '</a>';
+        }
+
+        echo '</div>';
     }
-
-    if (empty($buttons)) return;
-
-    echo '<div class="outfit-buttons">';
-
-    foreach ($buttons as $btn) {
-        echo '<a class="buy-btn" href="' . esc_url($btn['link']) . '" target="_blank" rel="nofollow sponsored">';
-        echo esc_html($btn['label']);
-        echo '</a>';
-    }
-
-    echo '</div>';
 }
 
 

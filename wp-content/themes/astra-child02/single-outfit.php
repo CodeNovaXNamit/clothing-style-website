@@ -1,4 +1,7 @@
-<?php get_header(); ?>
+<?php
+get_header();
+the_post();
+?>
 
 <div class="single-outfit-container">
 
@@ -7,6 +10,7 @@
   </div>
 
   <div class="single-outfit-right">
+
     <h1><?php the_title(); ?></h1>
 
     <div class="outfit-description">
@@ -14,6 +18,7 @@
     </div>
 
     <?php render_outfit_buttons(); ?>
+
   </div>
 
 </div>
