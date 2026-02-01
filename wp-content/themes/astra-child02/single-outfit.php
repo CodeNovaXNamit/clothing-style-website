@@ -1,14 +1,10 @@
-<?php get_header(); ?>
-
 <div class="single-outfit-container">
 
-  <!-- 1️⃣ Image -->
-  <div class="outfit-media">
+  <div class="single-outfit-left">
     <?php the_post_thumbnail('large'); ?>
   </div>
 
-  <!-- 2️⃣ Details -->
-  <div class="outfit-info">
+  <div class="single-outfit-center">
     <h1><?php the_title(); ?></h1>
 
     <div class="outfit-description">
@@ -16,16 +12,8 @@
     </div>
   </div>
 
-  <!-- 3️⃣ Buy buttons -->
-  <div class="outfit-actions">
+  <div class="single-outfit-right">
     <?php render_outfit_buttons(); ?>
   </div>
 
-  <!-- 4️⃣ Ratings / future -->
-  <div class="outfit-meta">
-    <!-- ratings, tags, season, etc (future) -->
-  </div>
-
 </div>
-
-<?php get_footer(); ?>
